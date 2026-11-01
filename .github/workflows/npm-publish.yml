@@ -1,12 +1,10 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+# 手动发布到 npm。个人主题默认不发 npm；发布 GitHub Release 不再触发此工作流。
+# 只有确认包名归属和 token 权限后，才从 Actions 页面手动运行。
 
 name: Node.js Package
 
 on:
   workflow_dispatch:
-  release:
-    types: [published]
 
 jobs:
   publish-npm:
