@@ -1,3 +1,14 @@
+// image lightbox
+window.addEventListener('load', () => {
+    if (!window.Fancybox) return;
+    Fancybox.bind('article img', {
+        groupAll: true,
+        Images: {
+            Panzoom: { maxScale: 4 }
+        }
+    });
+});
+
 // tabble gallery
 document.querySelectorAll('table:has(img)').forEach(item => {
     item.classList.add('nexmoe-album');
