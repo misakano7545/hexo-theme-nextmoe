@@ -87,3 +87,20 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 {% endpullquote %}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula justo, lobortis sit amet semper vel, dignissim sit amet libero. Praesent ac tempus ligula. Maecenas at gravida odio. Etiam tristique volutpat lacus eu faucibus. Donec non tempus arcu. Phasellus adipiscing, mauris nec mollis egestas, ipsum nunc auctor velit, et rhoncus lorem ipsum at ante. Praesent et sem in velit volutpat auctor. Duis vel mauris nulla. Maecenas mattis interdum ante, quis sagittis nibh cursus et. Nulla facilisi. Morbi convallis gravida tortor, ut fermentum enim gravida et. Nunc vel dictum nisl, non ultrices libero. Proin vestibulum felis eget orci consectetur lobortis. Vestibulum augue nulla, iaculis vitae augue vehicula, dignissim ultrices libero. Sed imperdiet urna et quam ultrices tincidunt nec ac magna. Etiam vel pharetra elit.
+
+## Note
+
+{% note info %}
+Fluid 兼容的提示块，支持 **Markdown**、`行内代码` 和链接。
+{% endnote %}
+
+{% note warning %}
+注意：`note` 的内容会按 Markdown 渲染，列表也能正常显示。
+
+- 第一项
+- 第二项
+{% endnote %}
+
+{% note danger %}
+危险操作示例。
+{% endnote %}

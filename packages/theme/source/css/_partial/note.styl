@@ -1,0 +1,80 @@
+article .note {
+    --note-color: #9aa3ad;
+    --note-bg: rgba(154, 163, 173, 0.14);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 1.5rem 0;
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    background-color: var(--note-bg);
+    box-shadow: inset 3px 0 0 var(--note-color);
+    color: var(--color-text-2);
+    font-size: 0.95em;
+
+    > .nexmoefont {
+        flex: none;
+        margin-top: 2px;
+        color: var(--note-color);
+        font-size: 20px;
+        line-height: 1;
+    }
+
+    .note-body {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .note-body > :first-child {
+        margin-top: 0;
+    }
+
+    .note-body > :last-child {
+        margin-bottom: 0;
+    }
+
+    p {
+        margin: 0.6em 0;
+        line-height: 1.7;
+    }
+
+    a {
+        color: var(--color-text-1);
+        text-decoration: underline;
+        text-decoration-color: var(--note-color);
+    }
+
+    .highlight {
+        margin: 12px 0;
+    }
+}
+
+article .note-primary {
+    --note-color: var(--color7);
+    --note-bg: var(--color7-bg);
+}
+
+article .note-info {
+    --note-color: var(--color6);
+    --note-bg: var(--color6-bg);
+}
+
+article .note-success {
+    --note-color: var(--color4);
+    --note-bg: var(--color4-bg);
+}
+
+article .note-warning {
+    --note-color: var(--color3);
+    --note-bg: var(--color3-bg);
+}
+
+article .note-danger {
+    --note-color: var(--color-primary);
+    --note-bg: var(--color-primary-bg);
+}
+
+article .note-light {
+    --note-color: var(--color-text-2);
+    --note-bg: rgba(127, 127, 127, 0.1);
+}
