@@ -29,9 +29,10 @@
 		"eslint-plugin-json": "^3.0.0",
 		"eslint-plugin-react": "^7.17.0"
 	},
+	"peerDependencies": {
+		"hexo": "^7.1.1 || ^8.0.0"
+	},
 	"dependencies": {
-		"hexo": "^7.0.0 || ^8.0.0",
-		"hexo-component-inferno": "^3.0.0",
 		"hexo-generator-json-content": "^4.2.3",
 		"hexo-renderer-inferno": "^1.0.2",
 		"hexo-renderer-stylus": "^3.0.0",
