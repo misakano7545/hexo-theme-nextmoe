@@ -48,3 +48,21 @@ article figure.highlight {
 		opacity: 1;
 	}
 }
+
+@media screen and (max-width: 1024px) {
+	/* 横向滚动交给表格，复制按钮才能固定在代码块右上角 */
+	article figure.highlight {
+		overflow: visible;
+	}
+
+	article figure.highlight table {
+		display: block;
+		width: 100%;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	article figure.highlight > .codeblock-copy-wrapper {
+		opacity: 1;
+	}
+}
