@@ -14,6 +14,19 @@ function search() {
 }
 
 // catalog
+document.addEventListener('click', ev => {
+    const button = ev.target.closest('.nexmoe-catalog > .catalog');
+    if (button) {
+        button.parentElement.classList.toggle('nexmoe-toc-open');
+        return;
+    }
+    if (!ev.target.closest('.nexmoe-toc')) {
+        document.querySelectorAll('.nexmoe-toc-open').forEach(el => {
+            el.classList.remove('nexmoe-toc-open');
+        });
+    }
+});
+
 document.querySelectorAll('a.toc-link').forEach(item => {
     item.addEventListener('click', function(ev) {
         ev.preventDefault();
