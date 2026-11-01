@@ -8,9 +8,11 @@ window.addEventListener('load', () => {
 
         let copiedTimeout = null;
 
-        copyWrapper.addEventListener('click', ev => {
-            const highlightDom = ev.target.parentElement;
-            const code = highlightDom.querySelector('code');
+        copyWrapper.addEventListener('click', () => {
+            const highlightDom = copyWrapper.parentElement;
+            // Hexo 7 的高亮块没有 <code>，正文在 td.code > pre 里。
+            const code = highlightDom.querySelector('td.code pre') || highlightDom.querySelector('pre');
+            if (!code) return;
 
             let copiedCode = '';
 

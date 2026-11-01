@@ -179,7 +179,8 @@ body.mdui-drawer-body-left {
     display: none;
 }
 
-.nexmoe-tool .catalog:hover .nexmoe-toc {
+.nexmoe-tool .catalog:hover + .nexmoe-toc,
+.nexmoe-tool .catalog:focus + .nexmoe-toc {
     display: block;
 }
 
@@ -189,6 +190,7 @@ body.mdui-drawer-body-left {
     padding: 0.4rem 0.8rem;
     display: block;
     color: rgba(0, 0, 0, 0.6);
+    overflow-wrap: anywhere;
 }
 
 .nexmoe-toc a:hover {
@@ -216,6 +218,18 @@ body.mdui-drawer-body-left {
 
 .nexmoe-toc * {
     list-style: none;
+}
+
+/* 旧字体里只有 twitter 字形，用 SVG 遮罩补一个 X，社交配置可直接写 icon-x。 */
+.icon-x:before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.9 2H22l-7.3 8.3L23 22h-6.7l-5.2-6.8L4.9 22H2l7.8-8.9L1.5 2h6.9l4.7 6.2L18.9 2Z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.9 2H22l-7.3 8.3L23 22h-6.7l-5.2-6.8L4.9 22H2l7.8-8.9L1.5 2h6.9l4.7 6.2L18.9 2Z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 photos img {

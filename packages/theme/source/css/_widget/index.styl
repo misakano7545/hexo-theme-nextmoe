@@ -26,9 +26,14 @@
                 white-space: nowrap;
                 position: relative;
                 padding: 12px 18px;
+                /* 给右侧计数圆点留位，长分类名不再压到数字下面。 */
+                padding-right: 52px;
 
                 a {
                     color: #606266;
+                    display: block;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
 

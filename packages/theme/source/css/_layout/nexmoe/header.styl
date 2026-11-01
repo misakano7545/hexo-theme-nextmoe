@@ -4,6 +4,8 @@
     .mdui-drawer {
         left: unset;
         scrollbar-width: none;
+        /* Safari 会把文章封面合成到独立层，5000 不够；压过 .nexmoe-fixed 的 9999。 */
+        z-index: 10000;
     }
 
     .mdui-drawer::-webkit-scrollbar {
