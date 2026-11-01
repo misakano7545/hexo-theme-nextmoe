@@ -19,3 +19,19 @@
         }
     }
 }
+
+/* 桌面端放侧栏，移动端放页脚，避免同一屏出现两次 */
+.nexmoe-copyright .nexmoe-beian {
+    margin-top: 6px;
+    padding: 0;
+    border-top: none;
+    gap: 2px 10px;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+@media (min-width: 1025px) {
+    #nexmoe-footer .nexmoe-beian {
+        display: none;
+    }
+}

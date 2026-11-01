@@ -15,10 +15,10 @@ module.exports = class extends Component {
                     </a>
 					&
                     <a
-                        href="https://github.com/theme-nexmoe/hexo-theme-nexmoe"
+                        href="https://github.com/misakano7545/hexo-theme-nextmoe"
                         target="_blank" rel="noopener"
                     >
-						Nexmoe
+						NextMoe
                     </a>
                     <div
                         dangerouslySetInnerHTML={{ __html: theme.slotSidebar }}
