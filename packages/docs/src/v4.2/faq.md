@@ -30,4 +30,4 @@ highlight:
 
 ## Cannot read properties of undefined
 
-如果遇到上面字样的报错，请检查你的 Hexo 根目录下是否正常配置了 `_config.nexmoe.yml`
+如果遇到上面字样的报错，请检查你的 Hexo 根目录下是否正常配置了 `_config.nextmoe.yml`

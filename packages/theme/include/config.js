@@ -28,7 +28,7 @@ function checkConfig(hexo) {
     if (!process.argv.includes('--nexmoe-dont-check-config')) {
         console.info('[Nexmoe] Checking theme configurations');
 
-        const themeSiteCfg = path.join(hexo.base_dir, '_config.nexmoe.yml');
+        const themeSiteCfg = path.join(hexo.base_dir, `_config.${hexo.config.theme || 'nextmoe'}.yml`);
         const themeDirCfg = path.join(hexo.theme_dir, '_config.yml');
         const themeCfgPaths = [themeDirCfg, themeSiteCfg].filter(cfgPath => fs.existsSync(cfgPath));
         // const themeSiteCfgExample = themeSiteCfg + '.example';

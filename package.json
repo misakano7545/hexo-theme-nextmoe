@@ -1,5 +1,5 @@
 {
-  "name": "nexmoe",
+  "name": "nextmoe",
   "scripts": {
     "dev": "pnpm run --filter=demo dev",
     "dev:docs": "pnpm run --filter=docs dev",

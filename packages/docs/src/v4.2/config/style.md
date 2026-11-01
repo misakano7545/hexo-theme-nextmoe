@@ -2,7 +2,7 @@
 
 ## 使用
 
-您应该在根目录中的 `_config.nexmoe.yml` 中设置 `customStyles` 的值。
+您应该在根目录中的 `_config.nextmoe.yml` 中设置 `customStyles` 的值。
 默认配置如下：
 
 ```yaml

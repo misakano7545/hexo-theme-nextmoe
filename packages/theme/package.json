@@ -1,10 +1,11 @@
 {
-	"name": "hexo-theme-nexmoe",
+	"name": "hexo-theme-nextmoe",
 	"version": "4.2.2",
-	"description": "🔥 A special hexo theme.",
+	"description": "NextMoe — 小御坂的个人 Hexo 主题，基于 NexMoe 二次开发。",
 	"keywords": [
 		"hexo",
 		"theme",
+		"nextmoe",
 		"nexmoe"
 	],
 	"author": "Nexmoe (https://github.com/nexmoe)",
@@ -16,12 +17,12 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/theme-nexmoe/hexo-theme-nexmoe.git"
+		"url": "git+https://github.com/misakano7545/hexo-theme-nextmoe.git"
 	},
 	"bugs": {
-		"url": "https://github.com/theme-nexmoe/hexo-theme-nexmoe/issues"
+		"url": "https://github.com/misakano7545/hexo-theme-nextmoe/issues"
 	},
-	"homepage": "https://docs.nexmoe.com/",
+	"homepage": "https://github.com/misakano7545/hexo-theme-nextmoe#readme",
 	"devDependencies": {
 		"eslint": "^8.6.0",
 		"eslint-config-hexo": "^5.0.0",

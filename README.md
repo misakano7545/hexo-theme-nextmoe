@@ -5,7 +5,7 @@
 | Links                                                                                                           | Gallery                                                                                                     |
 ## 🎓 Docs
 
-<https://docs.nexmoe.com>
+上游文档站 `docs.nexmoe.com` 已下线。文档源在 [packages/docs](packages/docs)，本地运行 `pnpm dev:docs` 查看。
 
 ## 💻 Preview
 

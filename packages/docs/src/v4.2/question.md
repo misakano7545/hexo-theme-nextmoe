@@ -12,7 +12,7 @@
 
 ## 3、搜索 GitHub 中的 issue
 
-很多问题在issue中也能找到答案 [前往搜索 issue](https://github.com/theme-nexmoe/hexo-theme-nexmoe/issues)
+很多问题在issue中也能找到答案 [前往搜索 issue](https://github.com/misakano7545/hexo-theme-nextmoe/issues)
 
 ## 4、使用搜索引擎
 
@@ -20,6 +20,6 @@
 
 ## 5、社区提问
 
-有使用问题请在这里提问：<https://github.com/theme-nexmoe/hexo-theme-nexmoe/discussions>
+有使用问题请在这里提问：<https://github.com/misakano7545/hexo-theme-nextmoe/discussions>
 
 也可以进主题讨论群 614621637：[Hexo Nexmoe 主题](https://jq.qq.com/?_wv=1027&k=1YL6FmUS)
