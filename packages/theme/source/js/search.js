@@ -10,11 +10,11 @@ function loadData(arg) {
                 searchData = res instanceof Array ? res : res.posts;
                 searchkey(arg);
             } else {
-                console.error(statusText);
+                console.error(this.statusText);
             }
         };
         xhr.onerror = function() {
-            console.error(statusText);
+            console.error(this.statusText);
         };
         xhr.send();
     } else {
@@ -23,22 +23,24 @@ function loadData(arg) {
 }
 
 function searchkey(keyword) {
+    const seen = new Set();
     keyword.forEach(word => {
+        const reg = new RegExp(word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
         searchData.forEach(post => {
             const rend = {};
-            const reg = new RegExp(word, 'g');
             let flag = false;
             if (post.title.search(reg) !== -1) {
-                rend.title = post.title.replace(reg, `<span class="keyword">${word}</span>`);
+                rend.title = post.title.replace(reg, '<span class="keyword">$&</span>');
                 flag = true;
             }
             const textpos = post.text.search(reg);
             if (textpos !== -1) {
                 rend.text = `…${post.text.substring(textpos, textpos + 18)}…`;
-                rend.text = rend.text.replace(reg, `<span class="keyword">${word}</span>`);
+                rend.text = rend.text.replace(reg, '<span class="keyword">$&</span>');
                 flag = true;
             }
-            if (flag) {
+            if (flag && !seen.has(post.path)) {
+                seen.add(post.path);
                 rend.title = !rend.title ? post.title : rend.title;
                 rend.text = !rend.text ? post.text : rend.text;
                 rend.href = `/${post.path}`;
@@ -56,12 +58,13 @@ function render(data) {
     document.getElementsByClassName('search-body')[0].appendChild(ele);
 }
 
-// 主程序
-const key = decodeURI(location.search.split('?q=')[1]);
-if (key !== undefined && key !== 'undefined') {
-    document.getElementsByClassName('search-input')[0].value = key;
-    loadData(format(key));
-    document.getElementById('nexmoe-search-space').style.display = 'flex';
+function openSearch(value) {
+    const space = document.getElementById('nexmoe-search-space');
+    const input = document.getElementsByClassName('search-input')[0];
+    space.style.display = 'flex';
+    if (value !== undefined) input.value = value;
+    input.focus();
+    if (input.value) sinput();
 }
 
 // 事件
@@ -76,5 +79,23 @@ function sinput() {
 
 // 搜索词格式化
 function format(word) {
-    return word.replace(/[ ]/g, '').split(' ');
+    return word.trim().split(/\s+/).filter(Boolean);
+}
+
+// 主程序
+function bindSearch() {
+    const widgetInput = document.getElementById('search_value');
+    if (widgetInput) {
+        widgetInput.addEventListener('focus', () => openSearch(widgetInput.value));
+        widgetInput.addEventListener('input', () => openSearch(widgetInput.value));
+    }
+
+    const key = new URLSearchParams(location.search).get('q');
+    if (key) openSearch(key);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindSearch);
+} else {
+    bindSearch();
 }
