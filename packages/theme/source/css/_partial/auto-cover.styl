@@ -1,0 +1,37 @@
+.nexmoe-post-cover.nexmoe-auto-cover {
+    display: flex;
+    align-items: flex-end;
+    min-height: 220px;
+    background-color: unquote("hsl(var(--cover-hue), 45%, 18%)");
+    background-image: unquote("radial-gradient(circle at 82% 18%, hsla(calc(var(--cover-hue) + 45), 85%, 65%, 0.35) 0, transparent 32%), radial-gradient(circle at 12% 90%, hsla(calc(var(--cover-hue) + 200), 80%, 60%, 0.22) 0, transparent 38%), linear-gradient(135deg, hsl(var(--cover-hue), 45%, 18%), hsl(calc(var(--cover-hue) + 45), 55%, 32%))");
+    background-size: cover;
+
+    &::before {
+        content: '';
+        position: absolute;
+        right: -90px;
+        top: -140px;
+        width: 420px;
+        height: 420px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 50%;
+        box-shadow: 0 0 0 42px rgba(255, 255, 255, 0.04);
+        z-index: 0;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 28px);
+        opacity: 0.55;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    h1 {
+        width: 100%;
+        z-index: 1;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+    }
+}

@@ -26,6 +26,11 @@ module.exports = class extends Component {
 
                 <div id="nexmoe-footer">
                     <Footer {...this.props} />
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: partial('_partial/beian')
+                        }}
+                    ></div>
                 </div>
             </Fragment>
         );

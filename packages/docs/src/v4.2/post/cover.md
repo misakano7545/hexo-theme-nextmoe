@@ -15,3 +15,9 @@ coverWidth: 1200
 coverHeight: 750
 ---
 ```
+
+## 自动头图
+
+不写 `cover` 时，主题会根据标题生成一张渐变色头图，同一标题每次构建颜色一致，不需要额外图片或网络请求。
+
+关闭方式：在 `_config.nextmoe.yml` 中设置 `function.autoCover: false`。
