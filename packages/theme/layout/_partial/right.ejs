@@ -5,11 +5,13 @@
 
             <% const toc_obj = toc(page.content, {list_number: true}); %>
             <% if (toc_obj.length > 0) { %>
-            <button class="mdui-fab catalog" style="overflow:unset;" aria-label="Table of contents">
-                <i class="nexmoefont icon-i-catalog"></i>
-            </button>
-            <div class="nexmoe-toc">
-                <%- toc_obj %>
+            <div class="nexmoe-catalog">
+                <button class="mdui-fab catalog" style="overflow:unset;" aria-label="Table of contents">
+                    <i class="nexmoefont icon-i-catalog"></i>
+                </button>
+                <div class="nexmoe-toc">
+                    <%- toc_obj %>
+                </div>
             </div>
             <% } %>
 

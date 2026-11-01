@@ -163,6 +163,11 @@ body.mdui-drawer-body-left {
     }
 }
 
+.nexmoe-catalog {
+    display: inline-block;
+    position: relative;
+}
+
 .nexmoe-toc {
     text-transform: none;
     width: 420px;
@@ -172,15 +177,15 @@ body.mdui-drawer-body-left {
     box-shadow: 0 0 1rem var(--color-shadow);
     background-color: #fff;
     position: absolute;
-    bottom: 0px;
+    bottom: 100%;
     right: 0;
     border-radius: 16px;
     font-size: 16px;
     display: none;
 }
 
-.nexmoe-tool .catalog:hover + .nexmoe-toc,
-.nexmoe-tool .catalog:focus + .nexmoe-toc {
+.nexmoe-catalog:hover .nexmoe-toc,
+.nexmoe-catalog:focus-within .nexmoe-toc {
     display: block;
 }
 
