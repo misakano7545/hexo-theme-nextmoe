@@ -60,7 +60,7 @@ importers:
   packages/theme:
     dependencies:
       hexo:
-        specifier: ^7.0.0
+        specifier: ^7.0.0 || ^8.0.0
         version: 7.2.0(chokidar@3.6.0)
       hexo-component-inferno:
         specifier: ^3.0.0

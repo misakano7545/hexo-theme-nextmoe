@@ -30,7 +30,7 @@
 		"eslint-plugin-react": "^7.17.0"
 	},
 	"dependencies": {
-		"hexo": "^7.0.0",
+		"hexo": "^7.0.0 || ^8.0.0",
 		"hexo-component-inferno": "^3.0.0",
 		"hexo-generator-json-content": "^4.2.3",
 		"hexo-renderer-inferno": "^1.0.2",
