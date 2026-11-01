@@ -1,5 +1,5 @@
 // image lightbox
-window.addEventListener('load', () => {
+const initLightbox = () => {
     if (!window.Fancybox) return;
     Fancybox.bind('article img', {
         groupAll: true,
@@ -7,7 +7,12 @@ window.addEventListener('load', () => {
             Panzoom: { maxScale: 4 }
         }
     });
-});
+};
+if (document.readyState === 'complete') {
+    initLightbox();
+} else {
+    window.addEventListener('load', initLightbox);
+}
 
 // tabble gallery
 document.querySelectorAll('table:has(img)').forEach(item => {
