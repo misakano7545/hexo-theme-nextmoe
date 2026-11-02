@@ -1,0 +1,35 @@
+// 深/浅色切换按钮（侧栏统计下方，移动端在抽屉里）
+.nexmoe-theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 30px;
+    margin: 0 auto 14px;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-subtle);
+    color: var(--color-text-2);
+    cursor: pointer;
+    transition: color 0.2s, background-color 0.2s;
+
+    &:hover {
+        color: var(--color-primary);
+    }
+
+    .icon-sun {
+        display: none;
+    }
+
+    // 当前是暗色 → 显示太阳（点了回亮色）
+    &[data-mode="dark"] {
+        .icon-moon {
+            display: none;
+        }
+
+        .icon-sun {
+            display: block;
+        }
+    }
+}

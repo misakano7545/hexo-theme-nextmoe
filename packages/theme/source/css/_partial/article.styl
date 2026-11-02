@@ -184,7 +184,7 @@ article h2:before {
 	content: '';
 	width: 100%;
 	padding: 0px $gutter;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid var(--color-border);
 	position: absolute;
 	bottom: -1px;
 	left: -($gutter);
@@ -224,14 +224,14 @@ article h6 {
 }
 
 article blockquote {
-	color: #666;
+	color: var(--color-text-2);
 	margin: $gutter 0;
 	padding: 0.1em 2.2em;
-	background-color: #f8f8f8;
+	background-color: var(--color-subtle);
 	line-height: 28px;
 	position: relative;
 	border-radius: 10px;
-	border: 1px solid #eee;
+	border: 1px solid var(--color-border);
 	font-family: sf pro sc, sf pro display, sf pro icons, aos icons, pingfang sc, helvetica neue, helvetica, arial, sans-serif;
 }
 
@@ -334,7 +334,7 @@ article dd {
 }
 
 article > table {
-	color: #5b6064;
+	color: var(--color-text-2);
 	border-spacing: 0;
 	border-collapse: collapse;
 	max-width: 100%;
@@ -355,31 +355,31 @@ article > table::-webkit-scrollbar-thumb {
 }
 
 article > table thead {
-	border-bottom: 1px solid #eee;
-	background-color: #f8f8f8;
+	border-bottom: 1px solid var(--color-border);
+	background-color: var(--color-subtle);
 }
 
 article > table thead tr {
-	background-color: #f8f8f8;
+	background-color: var(--color-subtle);
 }
 
 article > table th {
-	border: 1px solid #eee;
+	border: 1px solid var(--color-border);
 	padding: 13px 26px;
 	font-weight: 400;
 }
 
 article > table td {
-	border: 1px solid #eee;
+	border: 1px solid var(--color-border);
 	padding: 13px 26px;
 }
 
 article > table tr {
-	background-color: #fff;
+	background-color: var(--color-card);
 }
 
 article > table tr:nth-child(2n) {
-	background-color: #f8f8f8;
+	background-color: var(--color-subtle);
 }
 
 article img, article canvas, article video, article svg, article select, article textarea {
@@ -480,8 +480,8 @@ font.douyin {
 }
 
 .aplayer {
-	-webkit-box-shadow: 0 0 0 1px #eee !important;
-	box-shadow: 0 0 0 1px #eee !important;
+	-webkit-box-shadow: 0 0 0 1px var(--color-border) !important;
+	box-shadow: 0 0 0 1px var(--color-border) !important;
 	border-radius: 10px !important;
 	margin: $gutter 0 !important;
 	height: 90px;

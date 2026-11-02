@@ -19,6 +19,7 @@ if (is_archive()){
 <meta charset="UTF-8">
 <meta name="keywords" content="<%= config.keywords %>">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<script>try{var t=localStorage.getItem('nexmoe-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <%
 // SEO：canonical、描述与结构化数据由主题统一产出，站点身份仍留在各自 _config
 var seoDesc = strip_html(page.description || '')

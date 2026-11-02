@@ -3,23 +3,33 @@
    滚动时每帧都要对 860×1000+ 的背板跑一次 feTurbulence + feDisplacementMap，掉帧约 7 倍。
    Safari / Firefox 会丢弃带 url() 的声明，退回前一条只有饱和度与亮度的图层，仍是同一套观感。
    注：stylus 的 rgba() 内置函数不认 var()，通道值必须走 unquote。 */
+glass-light()
+    --lg-tint: 255, 255, 255
+    --lg-alpha: 0.55
+    --lg-rim: rgba(255, 255, 255, 0.55)
+    --lg-shine: rgba(255, 255, 255, 0.9)
+    --lg-shadow: 0 18px 48px rgba(31, 41, 55, 0.16)
+
+glass-dark()
+    --lg-tint: 28, 28, 32
+    --lg-alpha: 0.75
+    --lg-rim: rgba(255, 255, 255, 0.14)
+    --lg-shine: rgba(255, 255, 255, 0.22)
+    --lg-shadow: 0 18px 48px rgba(0, 0, 0, 0.45)
+
 :root {
-    --lg-tint: 255, 255, 255;
-    --lg-alpha: 0.55;
-    --lg-rim: rgba(255, 255, 255, 0.55);
-    --lg-shine: rgba(255, 255, 255, 0.9);
-    --lg-shadow: 0 18px 48px rgba(31, 41, 55, 0.16);
     --lg-radius: 24px;
+    glass-light();
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --lg-tint: 28, 28, 32;
-        --lg-alpha: 0.75;
-        --lg-rim: rgba(255, 255, 255, 0.14);
-        --lg-shine: rgba(255, 255, 255, 0.22);
-        --lg-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+    :root:not([data-theme="light"]) {
+        glass-dark();
     }
+}
+
+:root[data-theme="dark"] {
+    glass-dark();
 }
 
 lg-tint(alpha) {

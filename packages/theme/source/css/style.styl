@@ -1,5 +1,24 @@
 $gutter = 24px;
 
+// 主题色板：一处定义，系统偏好和手动切换共用（避免两份值走样）
+theme-light()
+    color-scheme: light
+    --color-card: #fff
+    --color-text-1: #111
+    --color-text-2: #444
+    --color-text-3: #363636
+    --color-subtle: #f8f8f8
+    --color-border: #eee
+
+theme-dark()
+    color-scheme: dark
+    --color-card: #2b2b2b
+    --color-text-1: #fff
+    --color-text-2: #d8d8d8
+    --color-text-3: #ddd
+    --color-subtle: rgba(255, 255, 255, 0.06)
+    --color-border: rgba(255, 255, 255, 0.14)
+
 :root {
     --gutter: 24px;
     --radius: 13px;
@@ -18,18 +37,20 @@ $gutter = 24px;
     --color6-bg: rgba(26, 152, 255, 0.15);
     --color7-bg: rgba(144, 144, 255, 0.15);
     --color-shadow: rgba(161, 177, 204, 0.4);
-    --color-card: #fff;
-    --color-text-1: #111;
-    --color-text-2: #444;
-    --color-text-3: #363636;
+    theme-light();
 }
 
+// 手动选了亮色就不再跟系统
 @media (prefers-color-scheme: dark) {
-    :root {
-        --color-card: #2b2b2b;
-        --color-text-1: #fff;
-        --color-text-2: #ccc;
+    :root:not([data-theme="light"]) {
+        theme-dark();
+        --color-shadow: rgba(0, 0, 0, 0.5);
     }
+}
+
+:root[data-theme="dark"] {
+    theme-dark();
+    --color-shadow: rgba(0, 0, 0, 0.5);
 }
 
 @import '_partial/*';
@@ -145,7 +166,7 @@ body.mdui-drawer-body-left {
 }
 
 .nexmoe-post-right .nexmoe-tool .mdui-fab {
-    color: #444;
+    color: var(--color-text-2);
 }
 
 @media screen and (max-width: 1024px) {
@@ -179,7 +200,7 @@ body.mdui-drawer-body-left {
     white-space: normal;
     text-align: left;
     box-shadow: 0 0 1rem var(--color-shadow);
-    background-color: #fff;
+    background-color: var(--color-card);
     position: absolute;
     bottom: 100%;
     right: 0;

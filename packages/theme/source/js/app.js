@@ -117,3 +117,40 @@ window.onload = function() {
         }
     });
 };
+
+// 深浅色切换：没存过偏好就跟随系统，点了才写 localStorage。
+// app.js 是 async 加载的，DOM 可能还没解析完，所以两种时机都要接。
+const initThemeToggle = () => {
+    const root = document.documentElement;
+    const btn = document.getElementById('nexmoe-theme-toggle');
+    if (!btn) return;
+
+    const query = window.matchMedia('(prefers-color-scheme: dark)');
+    const effective = () => root.dataset.theme || (query.matches ? 'dark' : 'light');
+    const sync = () => {
+        const mode = effective();
+        btn.dataset.mode = mode;
+        const label = mode === 'dark' ? '切换到亮色模式' : '切换到深色模式';
+        btn.setAttribute('aria-label', label);
+        btn.title = label;
+    };
+
+    btn.addEventListener('click', () => {
+        const next = effective() === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try {
+            localStorage.setItem('nexmoe-theme', next);
+        } catch (e) {
+            // 隐私模式下写不进去就只在本次会话生效
+        }
+        sync();
+    });
+
+    query.addEventListener('change', sync);
+    sync();
+};
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle);
+} else {
+    initThemeToggle();
+}
