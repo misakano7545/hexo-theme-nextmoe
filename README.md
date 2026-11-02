@@ -24,7 +24,7 @@
 
 ## 💻 Contributors
 
-![Contributors](https://opencollective.com/hexo-theme-nexmoe/contributors.svg?width=890&button=false)
+![Contributors](https://contrib.rocks/image?repo=misakano7545/hexo-theme-nextmoe)
 
 ## 🎇 Awesome
 
