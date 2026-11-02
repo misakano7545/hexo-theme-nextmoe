@@ -9,7 +9,6 @@
             <% } else if (theme.function.autoCover) { %>
                 <div class="nexmoe-post-cover mdui-ripple nexmoe-auto-cover" style="--cover-hue: <%= coverHue(page.title || page.path) %>;">
                     <h1><%= page.title %></h1>
-                    <i class="nexmoe-cover-badge"><img src="<%= url_for(theme.avatar) %>" alt=""></i>
                     <% if (page.sticky) { %><b class="nexmoe-cover-pin">置顶</b><% } %>
                 </div>
             <%}  else{ %>
