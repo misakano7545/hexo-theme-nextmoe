@@ -6,6 +6,14 @@ module.exports = class extends Component {
 
         return (
             <div id="nexmoe-background">
+                {/* 液态玻璃的折射层：位移贴图让背景沿边缘轻微弯折，scale 越大越像凸透镜。 */}
+                <svg width="0" height="0" aria-hidden="true" style={{ position: 'absolute' }}>
+                    <filter id="lg-refract" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.005 0.011" numOctaves="2" seed="11" result="noise" />
+                        <feGaussianBlur in="noise" stdDeviation="4" result="smooth" />
+                        <feDisplacementMap in="SourceGraphic" in2="smooth" scale="14" xChannelSelector="R" yChannelSelector="G" />
+                    </filter>
+                </svg>
                 <div
                     class="nexmoe-bg"
                     style={`background-image: url(${theme.background.path})`}

@@ -37,8 +37,13 @@ $gutter = 24px;
 @import '_widget/*';
 
 body {
-    background: var(--color-card);
+    /* 透明，让固定定位的背景图铺满整页，玻璃面板才有东西可折射。 */
+    background: transparent;
     font-size: 17px;
+}
+
+html {
+    background: var(--color-card);
 }
 
 .xiaoshu {
@@ -140,7 +145,6 @@ body.mdui-drawer-body-left {
 }
 
 .nexmoe-post-right .nexmoe-tool .mdui-fab {
-    background: #fff;
     color: #444;
 }
 

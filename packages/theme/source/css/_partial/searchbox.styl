@@ -27,8 +27,9 @@
             flex-direction: row;
             line-height: 1.5em;
             font-weight: normal;
-            border-radius: 13px;
-            background-color: #ffffff;
+            --lg-alpha: 0.86;
+            lg-glass();
+            border-radius: var(--lg-radius);
             min-height: 3rem;
 
             .search-input-container {
@@ -56,8 +57,8 @@
 
         .search-body {
             .search-result {
-                background-color: #fff;
-                border-radius: 13px;
+                lg-glass();
+                border-radius: var(--lg-radius);
                 
                 a {
                     color: #b5b5b5;

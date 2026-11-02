@@ -1,0 +1,68 @@
+/* 液态玻璃材质：背景图保持清晰，玻璃只做提亮、饱和与高光，不做高斯模糊——高斯模糊会把背景图的细节一起抹掉。
+   折射（backdrop-filter 里挂 SVG 位移滤镜）只开在 56px 的悬浮按钮上：实测挂在整块内容面板上，
+   滚动时每帧都要对 860×1000+ 的背板跑一次 feTurbulence + feDisplacementMap，掉帧约 7 倍。
+   Safari / Firefox 会丢弃带 url() 的声明，退回前一条只有饱和度与亮度的图层，仍是同一套观感。
+   注：stylus 的 rgba() 内置函数不认 var()，通道值必须走 unquote。 */
+:root {
+    --lg-tint: 255, 255, 255;
+    --lg-alpha: 0.55;
+    --lg-rim: rgba(255, 255, 255, 0.55);
+    --lg-shine: rgba(255, 255, 255, 0.9);
+    --lg-shadow: 0 18px 48px rgba(31, 41, 55, 0.16);
+    --lg-radius: 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --lg-tint: 28, 28, 32;
+        --lg-alpha: 0.75;
+        --lg-rim: rgba(255, 255, 255, 0.14);
+        --lg-shine: rgba(255, 255, 255, 0.22);
+        --lg-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+    }
+}
+
+lg-tint(alpha) {
+    return unquote("rgba(var(--lg-tint), " + alpha + ")");
+}
+
+lg-glass() {
+    background-color: lg-tint(var(--lg-alpha));
+    /* 两道高光叠出玻璃的厚度：斜向面光 + 左上角点光。 */
+    background-image: linear-gradient(160deg, lg-tint(0.22), lg-tint(0) 42%),
+        radial-gradient(120% 90% at 12% 0%, lg-tint(0.28), lg-tint(0) 60%);
+    border: 1px solid var(--lg-rim);
+    box-shadow: var(--lg-shadow),
+        inset 0 1px 0 var(--lg-shine),
+        inset 0 -1px 0 lg-tint(0.25),
+        inset 1px 0 0 lg-tint(0.18),
+        inset -1px 0 0 lg-tint(0.18);
+    -webkit-backdrop-filter: saturate(180%) brightness(1.06);
+    backdrop-filter: saturate(180%) brightness(1.06);
+}
+
+#nexmoe-header .mdui-drawer {
+    lg-glass();
+    border-radius: 0 var(--lg-radius) var(--lg-radius) 0;
+    border-left: 0;
+}
+
+#nexmoe-content .nexmoe-primary {
+    lg-glass();
+    border-radius: var(--lg-radius);
+}
+
+#nexmoe-background .mdui-appbar {
+    lg-glass();
+    --lg-alpha: 0.8;
+    margin: 10px;
+    border-radius: var(--lg-radius);
+}
+
+.nexmoe-tool .mdui-fab {
+    lg-glass();
+    --lg-alpha: 0.62;
+    /* 唯一真实折射面：圆按钮，位移滤镜的代价可以忽略。 */
+    -webkit-backdrop-filter: saturate(180%) brightness(1.06) url("#lg-refract");
+    backdrop-filter: saturate(180%) brightness(1.06) url("#lg-refract");
+}
