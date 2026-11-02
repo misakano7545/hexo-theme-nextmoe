@@ -34,7 +34,3 @@
 - Hexo-Dark： <https://github.com/confuseder/hexo-theme-dark>
 - Typora： <https://github.com/imyMuyang/typora-theme-nexmoe>
 
-## 💴 Sponsor
-
-![微信赞赏码](https://i.dawnlab.me/e528323511d872bc759128fc9a8c665f.md.png)
-
