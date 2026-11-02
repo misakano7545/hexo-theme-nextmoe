@@ -19,9 +19,58 @@ if (is_archive()){
 <meta charset="UTF-8">
 <meta name="keywords" content="<%= config.keywords %>">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<%
+// SEO：canonical、描述与结构化数据由主题统一产出，站点身份仍留在各自 _config
+var seoDesc = strip_html(page.description || '')
+    .replace(/\s+/g, ' ').trim().slice(0, 160);
+var seoUrl = (page.permalink || full_url_for(page.path || '/')).replace(/index\.html$/, '');
+var seoCover = page.cover || (page.photos && page.photos[0]) || '';
+if (seoCover && !/^(https?:)?\/\//.test(seoCover)) seoCover = full_url_for(seoCover);
+var seoImage = seoCover || theme.avatar || '';
+var seoLang = page.lang || page.language || config.language || 'zh-CN';
+var seo = {};
+if (is_post()) {
+    seo = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: page.title,
+        url: seoUrl,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': seoUrl },
+        datePublished: page.date && page.date.toISOString(),
+        dateModified: (page.updated || page.date).toISOString(),
+        author: { '@type': 'Person', name: config.author, url: config.url },
+        inLanguage: seoLang
+    };
+    if (page.tags) seo.keywords = page.tags.toArray().map(function(t){ return t.name; }).join(', ');
+} else if (is_home()) {
+    seo = {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: config.title,
+        url: seoUrl,
+        inLanguage: seoLang
+    };
+} else {
+    seo = {
+        '@context': 'https://schema.org',
+        '@type': page.layout === 'about' ? 'AboutPage' : 'WebPage',
+        name: page.title || config.title,
+        url: seoUrl,
+        inLanguage: seoLang
+    };
+}
+if (seoDesc) seo.description = seoDesc;
+if (seoImage) seo.image = seoImage;
+%>
+<% if (seoDesc) { %><meta name="description" content="<%= seoDesc %>">
+<% } %>
+<link rel="canonical" href="<%= seoUrl %>">
+<% if (page.noindex) { %><meta name="robots" content="noindex, follow">
+<% } %>
+<script type="application/ld+json"><%- JSON.stringify(seo).replace(/</g, '\\u003c') %></script>
 
 <link rel="shortcut icon" href="<%= theme.favicon.href %>" type="<%= theme.favicon.type %>" />
-<%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+<%- open_graph({image: seoImage, url: seoUrl, twitter_card: seoImage ? 'summary_large_image' : 'summary', twitter_image: seoImage, twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
 <%- css([
     'lib/fancybox/fancybox.css', 
     'lib/mdui_043tiny/mdui.css'

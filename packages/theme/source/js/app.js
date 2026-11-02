@@ -3,8 +3,14 @@ const initLightbox = () => {
     if (!window.Fancybox) return;
     Fancybox.bind('article img', {
         groupAll: true,
-        Images: {
-            Panzoom: { maxScale: 4 }
+        Image: {
+            // 4.0.26 把 maxScale 改成 origWidth/fitWidth，小图比值正好是 1，缩放直接失效
+            Panzoom: {
+                maxScale: function () {
+                    const { origWidth, fitWidth } = this.content;
+                    return fitWidth > 0 ? Math.max(4, origWidth / fitWidth) : 4;
+                }
+            }
         }
     });
 };

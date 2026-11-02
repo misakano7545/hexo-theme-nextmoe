@@ -25,8 +25,8 @@ const { yellow } = require('./util/console');
 // }
 
 function checkConfig(hexo) {
-    if (!process.argv.includes('--nexmoe-dont-check-config')) {
-        console.info('[Nexmoe] Checking theme configurations');
+    if (!process.argv.includes('--nextmoe-dont-check-config')) {
+        console.info('[NextMoe] Checking theme configurations');
 
         const themeSiteCfg = path.join(hexo.base_dir, `_config.${hexo.config.theme || 'nextmoe'}.yml`);
         const themeDirCfg = path.join(hexo.theme_dir, '_config.yml');
@@ -37,7 +37,7 @@ function checkConfig(hexo) {
         // const loader = SchemaLoader.load(require(path.join(schemaDir, 'config.json')), schemaDir);
         // const schema = loader.getSchema('/config.json');
 
-        if (!process.argv.includes('--nexmoe-dont-generate-config')) {
+        if (!process.argv.includes('--nextmoe-dont-generate-config')) {
             if (!themeCfgPaths.length) {
                 console.warn('None of the following configuration files is found:');
                 console.warn(`- ${yellow(themeSiteCfg)}`);
@@ -47,17 +47,17 @@ function checkConfig(hexo) {
                 fs.writeFileSync(themeSiteCfg, fs.readFileSync(path.join(hexo.theme_dir, 'source/_config.yml')));
                 themeCfgPaths.push(themeSiteCfg);
                 console.info(`${yellow(themeSiteCfg)} created successfully.`);
-                console.info('To skip configuration generation, use "--nexmoe-dont-generate-config".');
+                console.info('To skip configuration generation, use "--nextmoe-dont-generate-config".');
             }
         }
 
         // let cfg = loadThemeConfig(hexo, themeCfgPaths);
 
-        // if (!process.argv.includes('--nexmoe-dont-upgrade-config')) {
+        // if (!process.argv.includes('--nextmoe-dont-upgrade-config')) {
         //     const migrator = new Migrator(require(path.join(hexo.theme_dir, 'include/migration/head')));
         //     if (cfg.version && migrator.isOudated(cfg.version)) {
         //         console.warn(`Your theme configuration is outdated (${cfg.version} < ${migrator.getLatestVersion()}).`);
-        //         console.info('To skip the configuration upgrade, use "--nexmoe-dont-upgrade-config".');
+        //         console.info('To skip the configuration upgrade, use "--nextmoe-dont-upgrade-config".');
 
         //         console.info('Backing up theme configuration files...');
         //         for (const cfgPath of themeCfgPaths) {
@@ -95,7 +95,7 @@ module.exports = hexo => {
     } catch (e) {
         console.error(e);
         console.error('Theme configuration checking failed.');
-        console.info('You may use \'--nexmoe-dont-check-config\' to skip configuration checking.');
+        console.info('You may use \'--nextmoe-dont-check-config\' to skip configuration checking.');
         process.exit(-1);
     }
 };
