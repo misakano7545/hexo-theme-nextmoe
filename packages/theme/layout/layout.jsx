@@ -6,7 +6,7 @@ module.exports = class extends Component {
         const { config, page, theme, partial } = this.props;
         const language = page.lang || page.language || config.language;
         const layout = 'nexmoe';
-        const bodyClass = layout === 'nexmoe' ? 'mdui-drawer-body-left' : '';
+        const bodyClass = (layout === 'nexmoe' ? 'mdui-drawer-body-left' : '') + (page.layout === 'post' ? ' nexmoe-post-page' : '');
         const Body = require(`./_layout/${layout}/body`);
         const SearchBox = require('./_partial/searchbox');
         return (

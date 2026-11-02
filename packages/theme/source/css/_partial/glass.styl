@@ -69,6 +69,24 @@ lg-glass() {
     border-radius: var(--lg-radius);
 }
 
+/* 移动端抽屉抽出来当全屏导航用，玻璃透出的背景会和菜单文字抢注意力，改成实底。 */
+@media screen and (max-width: 1023px) {
+    #nexmoe-header .mdui-drawer {
+        background-color: var(--color-card);
+        background-image: none;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        box-shadow: var(--lg-shadow);
+    }
+}
+
+/* 文章页背景退到后面：模糊 + 轻微变暗，让正文成为唯一焦点。
+   首页保持清晰，头图和列表本来就是内容的一部分。 */
+body.nexmoe-post-page .nexmoe-bg {
+    filter: blur(16px) brightness(0.86);
+    transform: scale(1.04);
+}
+
 .nexmoe-tool .mdui-fab {
     lg-glass();
     --lg-alpha: 0.62;
