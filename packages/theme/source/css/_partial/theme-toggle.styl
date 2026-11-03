@@ -1,23 +1,7 @@
-// 深/浅色切换按钮（侧栏统计下方，移动端在抽屉里）
+// 深/浅色切换按钮：悬浮工具列里，和返回顶部同一颗 mdui-fab
+// 尺寸/玻璃/圆角由 .nexmoe-tool .mdui-fab 提供，这里只管图标切换。
+// 返回顶部是 scrollY 动画控制 opacity，这里始终可见，所以别用 .backtop 的钩子。
 .nexmoe-theme-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 46px;
-    height: 30px;
-    margin: 0 auto 14px;
-    padding: 0;
-    border: 1px solid var(--color-border);
-    border-radius: 999px;
-    background: var(--color-subtle);
-    color: var(--color-text-2);
-    cursor: pointer;
-    transition: color 0.2s, background-color 0.2s;
-
-    &:hover {
-        color: var(--color-primary);
-    }
-
     .icon-sun {
         display: none;
     }
