@@ -135,8 +135,12 @@ const initThemeToggle = () => {
         btn.title = label;
     };
 
+    let switchTimer;
+
     btn.addEventListener('click', () => {
         const next = effective() === 'dark' ? 'light' : 'dark';
+        // 先挂 class 再改属性，否则第一帧就已经是新配色，没有渐变可看
+        root.classList.add('nexmoe-theme-switching');
         root.dataset.theme = next;
         try {
             localStorage.setItem('nexmoe-theme', next);
@@ -144,6 +148,9 @@ const initThemeToggle = () => {
             // 隐私模式下写不进去就只在本次会话生效
         }
         sync();
+        // 必须撤掉，否则之后所有 hover 的颜色变化都会变成 0.35s 慢动作
+        clearTimeout(switchTimer);
+        switchTimer = setTimeout(() => root.classList.remove('nexmoe-theme-switching'), 400);
     });
 
     query.addEventListener('change', sync);

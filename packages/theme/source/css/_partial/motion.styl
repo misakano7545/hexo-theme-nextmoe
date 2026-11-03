@@ -1,0 +1,64 @@
+// 动效集中在这里：跨页淡化、明暗切换颜色过渡、列表入场、卡片悬停。
+// 全部是 CSS 驱动，JS 只负责在切换那一刻挂一个 class。
+
+// 跨页导航：浏览器自己给整站跳转做交叉淡化，不需要 SPA 也不需要 JS。
+// 不支持的浏览器会忽略这条规则，行为跟以前一样。
+@view-transition {
+    navigation: auto;
+}
+
+// 明暗切换：整页颜色渐变，不用 view transition —— 那套要在 root 伪元素上挂
+// 动画，会和跨页导航抢同一个 view-transition-name，只能靠状态位区分，
+// 而状态位一旦没清干净就会污染之后所有跳转。
+// 只在切换的 0.4s 内挂这个 class，平时 hover 的 transition 不受影响。
+html.nexmoe-theme-switching *,
+html.nexmoe-theme-switching *::before,
+html.nexmoe-theme-switching *::after {
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease !important;
+}
+
+// 列表入场：改写列表模板后原来的滚动淡入没了，这里用纯 CSS 依序浮现。
+@keyframes nexmoe-post-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.nexmoe-posts .nexmoe-post {
+    // backwards 只在延迟期间保持起始态，动画跑完就交还给自身样式，
+    // 所以万一动画没跑起来也不会让卡片停在透明状态。
+    animation: nexmoe-post-in 0.5s cubic-bezier(0.22, 0.8, 0.3, 1) backwards;
+}
+
+for $i in 1..10
+    .nexmoe-posts .nexmoe-post:nth-child({$i})
+        animation-delay: 0.04s * ($i - 1)
+
+// 尊重系统的「减少动态效果」：动画全关，静态样式不受影响。
+@media (prefers-reduced-motion: reduce) {
+    .nexmoe-posts .nexmoe-post {
+        animation: none;
+    }
+
+    .nexmoe-posts .nexmoe-post:hover {
+        transform: none;
+    }
+
+    html.nexmoe-theme-switching *,
+    html.nexmoe-theme-switching *::before,
+    html.nexmoe-theme-switching *::after {
+        transition: none !important;
+    }
+
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
+    }
+}

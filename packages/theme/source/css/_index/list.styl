@@ -8,11 +8,13 @@
         border: 1px solid var(--color-border);
         border-radius: 16px;
         background-color: var(--color-subtle);
-        transition: border-color 0.2s, background-color 0.2s;
+        transition: border-color 0.2s, background-color 0.2s, transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .nexmoe-post:hover {
         border-color: var(--color-primary);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
     }
 
     .nexmoe-post-head {
