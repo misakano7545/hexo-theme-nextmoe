@@ -94,3 +94,38 @@ body.nexmoe-post-page .nexmoe-bg {
     -webkit-backdrop-filter: saturate(180%) brightness(1.06) url("#lg-refract");
     backdrop-filter: saturate(180%) brightness(1.06) url("#lg-refract");
 }
+
+/* 暗色下改实色：玻璃会把背景的明暗透上来，左上还有一道斜向高光，
+   导航栏和正文面板看着就不是同一个色调。统一成 --color-card 一块平色。 */
+lg-flat()
+    background-color: var(--color-card)
+    background-image: none
+    -webkit-backdrop-filter: none
+    backdrop-filter: none
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        #nexmoe-header .mdui-drawer,
+        #nexmoe-content .nexmoe-primary,
+        #nexmoe-background .mdui-appbar,
+        .nexmoe-tool .mdui-fab {
+            lg-flat();
+        }
+        /* 背景跟着压下去，否则实色面板硬贴在亮插画上更割裂。 */
+        #nexmoe-background .nexmoe-bg {
+            opacity: 0.3;
+        }
+    }
+}
+
+:root[data-theme="dark"] {
+    #nexmoe-header .mdui-drawer,
+    #nexmoe-content .nexmoe-primary,
+    #nexmoe-background .mdui-appbar,
+    .nexmoe-tool .mdui-fab {
+        lg-flat();
+    }
+    #nexmoe-background .nexmoe-bg {
+        opacity: 0.3;
+    }
+}
