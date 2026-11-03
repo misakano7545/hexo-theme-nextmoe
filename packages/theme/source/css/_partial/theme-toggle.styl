@@ -2,6 +2,11 @@
 // 尺寸/玻璃/圆角由 .nexmoe-tool .mdui-fab 提供，这里只管图标切换。
 // 返回顶部是 scrollY 动画控制 opacity，这里始终可见，所以别用 .backtop 的钩子。
 .nexmoe-theme-toggle {
+    // .mdui-fab 是 inline-block，SVG 会按基线贴左，这里接管成居中容器
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     .icon-sun {
         display: none;
     }
