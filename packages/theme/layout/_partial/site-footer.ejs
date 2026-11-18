@@ -1,0 +1,12 @@
+<%
+var icp = theme.beian && theme.beian.icp;
+var police = theme.beian && theme.beian.police;
+%>
+<footer class="site-footer">
+    <section class="copyright">&copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %></section>
+    <section class="powerby">
+        <% if (icp) { %><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener"><%= icp %></a><br><% } %>
+        <% if (police) { %><a href="https://beian.mps.gov.cn/" target="_blank" rel="noopener"><%= police %></a><br><% } %>
+        由 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 驱动 · 主题 <b><a href="https://github.com/misakano7545/hexo-theme-nextmoe" target="_blank" rel="noopener">NextMoe</a></b>（排版基于 <a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener">Stack</a>）
+    </section>
+</footer>

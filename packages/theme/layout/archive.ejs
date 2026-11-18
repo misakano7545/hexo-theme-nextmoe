@@ -1,0 +1,45 @@
+<%
+var posts = (page.tag && site.tags.findOne({ name: page.tag }) ? site.tags.findOne({ name: page.tag }).posts : site.posts);
+if (page.year) posts = posts.filter(function (p) { return p.date.year() == page.year; });
+var byYear = {};
+posts.sort('date', -1).each(function (post) { var y = post.date.year(); (byYear[y] = byYear[y] || []).push(post); });
+var years = Object.keys(byYear).sort(function (a, b) { return b - a; });
+%>
+<% if (!page.tag && site.categories.length) { %>
+<header>
+    <h2 class="section-title">分类</h2>
+    <div class="subsection-list">
+        <div class="article-list--tile">
+            <% site.categories.sort('count', -1).each(function (cat) { %>
+            <article>
+                <a href="<%- url_for(cat.path) %>">
+                    <div class="article-details"><h2 class="article-title"><%= cat.name %></h2></div>
+                </a>
+            </article>
+            <% }); %>
+        </div>
+    </div>
+</header>
+<% } %>
+<% years.forEach(function (year) { %>
+<div class="archives-group" id="<%= year %>">
+    <h2 class="archives-date section-title"><a href="#<%= year %>"><%= year %></a></h2>
+    <div class="article-list--compact">
+        <% byYear[year].forEach(function (post) {
+            var cover = post.cover || (post.photos && post.photos[0]);
+            if (!cover) { var im = /<img[^>]+src="([^"]+)"/.exec(post.content || ''); if (im) cover = im[1]; } %>
+        <article>
+            <a href="<%- url_for(post.path) %>">
+                <div class="article-details">
+                    <h2 class="article-title"><%= post.title %></h2>
+                    <footer class="article-time"><time datetime="<%= post.date.toISOString() %>"><%= date(post.date, 'YYYY年M月D日') %></time></footer>
+                </div>
+                <% if (cover) { %>
+                <div class="article-image"><img src="<%- url_for(cover) %>" loading="lazy" alt="<%= post.title %>"></div>
+                <% } %>
+            </a>
+        </article>
+        <% }); %>
+    </div>
+</div>
+<% }); %>

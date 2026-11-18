@@ -1,10 +1,21 @@
-<section class="nexmoe-archives">
-    <div class="tagcloud nexmoe-rainbow">
-        <%- list_tags({
-            show_count: true,
-            style: "unordered list",
-            class: "mdui-ripple ",
-            separator: ""
-        }) %>
+<header>
+    <h3 class="section-title">标签索引</h3>
+    <div class="section-card">
+        <div class="section-details">
+            <h3 class="section-count"><%= site.tags.length %> 个标签</h3>
+            <h1 class="section-term">标签</h1>
+        </div>
     </div>
+</header>
+<section class="article-list--compact">
+    <% site.tags.sort('count', -1).each(function (tag) { %>
+    <article>
+        <a href="<%- url_for(tag.path) %>">
+            <div class="article-details">
+                <h2 class="article-title"><%= tag.name %></h2>
+                <footer class="article-time"><time datetime="<%= tag.posts.first().date.toISOString() %>"><%= date(tag.posts.first().date, 'YYYY年M月D日') %></time></footer>
+            </div>
+        </a>
+    </article>
+    <% }); %>
 </section>

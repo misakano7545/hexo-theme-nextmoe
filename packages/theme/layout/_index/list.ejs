@@ -1,24 +1,36 @@
-<% page.posts.each(function (page) { %>
-    <div class="nexmoe-post">
-        <a class="nexmoe-post-head" href="<%- url_for(page.path) %>">
-            <h2><%= page.title %></h2>
-            <% if (page.sticky) { %><b class="nexmoe-post-pin">置顶</b><% } %>
-        </a>
-
-        <div class="nexmoe-post-meta">
-            <span><i class="nexmoefont icon-calendar-fill"></i><%- date(page.date, "YYYY-MM-DD") %></span>
-            <% if (page.categories && page.categories.length){ %>
-                <span><i class="nexmoefont icon-appstore-fill"></i><%= page.categories.data[0].name %></span>
-            <% } %>
-            <% if (theme.function.wordCount){ %>
-                <span><i class="nexmoefont icon-areachart"></i><%- wordcount(page.content) %> 字</span>
-            <% } %>
+<%
+var CALENDAR = '<svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>';
+var CLOCK = '<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>';
+%>
+<% page.posts.each(function (post) {
+    var cover = post.cover || (post.photos && post.photos[0]);
+    // 无 cover 时退回正文首图，卡片才有 Stack 的封面带；正文无图则保持纯文字卡片
+    if (!cover) { var im = /<img[^>]+src="([^"]+)"/.exec(post.content || ''); if (im) cover = im[1]; }
+    var cats = (post.categories && post.categories.length) ? post.categories : (post.tags && post.tags.length ? [post.tags.first()] : null);
+    var text = strip_html(post.excerpt || post.content).replace(/\s+/g, ' ').trim();
+    var subtitle = post.description || (text.length > 110 ? text.substring(0, 110) + '…' : text);
+    var minutes = Math.max(1, Math.ceil(strip_html(post.content).length / 400));
+%>
+<article<%- cover ? ' class="has-image"' : '' %>>
+    <header class="article-header">
+        <% if (cover) { %>
+        <div class="article-image">
+            <a href="<%- url_for(post.path) %>"><img src="<%- url_for(cover) %>" loading="lazy" alt="<%= post.title %>"></a>
         </div>
-
-        <div class="nexmoe-post-excerpt"><%- strip_html(page.excerpt || page.content).trim().substring(0, 200) %></div>
-
-        <% if (page.tags && page.tags.length){ %>
-            <div class="nexmoe-post-tags"><%- list_tags(page.tags, {show_count: false, style: false, separator: '', class: 'nexmoe-post-tag'}) %></div>
         <% } %>
-    </div>
-<% }) %>
+        <div class="article-details">
+            <% if (cats) { %>
+            <header class="article-category"><% cats.forEach(function (c) { %><a href="<%- url_for(c.path) %>"><%= c.name %></a><% }); %></header>
+            <% } %>
+            <div class="article-title-wrapper">
+                <h2 class="article-title"><a href="<%- url_for(post.path) %>"><%= post.title %></a></h2>
+                <% if (subtitle) { %><h3 class="article-subtitle"><%= subtitle %></h3><% } %>
+            </div>
+            <footer class="article-time">
+                <div><%- CALENDAR %><time class="article-time--published"><%= date(post.date, 'YYYY年M月D日') %></time></div>
+                <div><%- CLOCK %><time class="article-time--reading"><%= minutes %> 分钟</time></div>
+            </footer>
+        </div>
+    </header>
+</article>
+<% }); %>

@@ -1,0 +1,83 @@
+/* 站点级覆盖：只放 Stack 上游没有、而 Hexo 这边必须补的东西 */
+
+/* ---- Hexo 代码块（highlight.js 关闭后只剩 Hexo 自己的类名）---- */
+.article-content .highlight table { border: 0; margin: 0; width: 100%; background: none; }
+.article-content .highlight tr, .article-content .highlight td { border: 0; background: none; padding: 0; }
+.article-content .highlight td.gutter { border-right: 1px solid rgba(255, 255, 255, .12); }
+.article-content .highlight td.gutter pre { padding-right: var(--card-padding); }
+.article-content .highlight td.code { padding-left: var(--card-padding); }
+.article-content .highlight .line { display: block; }
+.article-content .highlight, .article-content .highlight pre,
+.article-content .highlight code { color: var(--pre-text-color); }
+/* 亮色用 GitHub 系配色（浅底深字），暗色用 Monokai（与 --pre-background-color:#272822 对齐） */
+html[data-scheme=light] .article-content .highlight .comment,
+html[data-scheme=light] .article-content .highlight .quote { color: #6a737d; }
+html[data-scheme=light] .article-content .highlight .keyword,
+html[data-scheme=light] .article-content .highlight .selector-tag,
+html[data-scheme=light] .article-content .highlight .doctag { color: #d73a49; }
+html[data-scheme=light] .article-content .highlight .string,
+html[data-scheme=light] .article-content .highlight .regexp,
+html[data-scheme=light] .article-content .highlight .addition { color: #032f62; }
+html[data-scheme=light] .article-content .highlight .number,
+html[data-scheme=light] .article-content .highlight .literal,
+html[data-scheme=light] .article-content .highlight .built_in,
+html[data-scheme=light] .article-content .highlight .type,
+html[data-scheme=light] .article-content .highlight .meta { color: #005cc5; }
+html[data-scheme=light] .article-content .highlight .title,
+html[data-scheme=light] .article-content .highlight .section,
+html[data-scheme=light] .article-content .highlight .name { color: #6f42c1; }
+html[data-scheme=light] .article-content .highlight .attr,
+html[data-scheme=light] .article-content .highlight .attribute,
+html[data-scheme=light] .article-content .highlight .variable,
+html[data-scheme=light] .article-content .highlight .template-variable,
+html[data-scheme=light] .article-content .highlight .symbol,
+html[data-scheme=light] .article-content .highlight .bullet,
+html[data-scheme=light] .article-content .highlight .link { color: #e36209; }
+html[data-scheme=light] .article-content .highlight .deletion { color: #b31d28; }
+
+html[data-scheme=dark] .article-content .highlight .comment,
+html[data-scheme=dark] .article-content .highlight .quote { color: #75715e; }
+html[data-scheme=dark] .article-content .highlight .keyword,
+html[data-scheme=dark] .article-content .highlight .selector-tag,
+html[data-scheme=dark] .article-content .highlight .doctag,
+html[data-scheme=dark] .article-content .highlight .deletion { color: #f92672; }
+html[data-scheme=dark] .article-content .highlight .string,
+html[data-scheme=dark] .article-content .highlight .regexp,
+html[data-scheme=dark] .article-content .highlight .addition { color: #e6db74; }
+html[data-scheme=dark] .article-content .highlight .number,
+html[data-scheme=dark] .article-content .highlight .literal,
+html[data-scheme=dark] .article-content .highlight .built_in,
+html[data-scheme=dark] .article-content .highlight .type { color: #ae81ff; }
+html[data-scheme=dark] .article-content .highlight .title,
+html[data-scheme=dark] .article-content .highlight .section,
+html[data-scheme=dark] .article-content .highlight .name,
+html[data-scheme=dark] .article-content .highlight .attr,
+html[data-scheme=dark] .article-content .highlight .attribute,
+html[data-scheme=dark] .article-content .highlight .variable,
+html[data-scheme=dark] .article-content .highlight .template-variable { color: #a6e22e; }
+html[data-scheme=dark] .article-content .highlight .meta,
+html[data-scheme=dark] .article-content .highlight .meta .keyword,
+html[data-scheme=dark] .article-content .highlight .symbol,
+html[data-scheme=dark] .article-content .highlight .bullet,
+html[data-scheme=dark] .article-content .highlight .link { color: #66d9ef; }
+.article-content .highlight .emphasis { font-style: italic; }
+.article-content .highlight .strong { font-weight: 700; }
+
+/* ---- 搜索浮层（沿用主题原有 search.js：读 content.json）---- */
+#nexmoe-search-space { display: none; position: fixed; inset: 0; z-index: 99; background: rgba(0, 0, 0, .45); align-items: flex-start; justify-content: center; padding: 10vh 16px 0; }
+#nexmoe-search-space .search-container { width: 100%; max-width: 620px; max-height: 70vh; display: flex; flex-direction: column; background: var(--card-background); border-radius: var(--card-border-radius); box-shadow: 0 12px 40px rgba(0, 0, 0, .2); overflow: hidden; }
+#nexmoe-search-space .search-header { display: flex; align-items: center; gap: 12px; padding: 4px 20px; border-bottom: 1px solid var(--card-separator-color); }
+#nexmoe-search-space .search-input-container { flex: 1; }
+#nexmoe-search-space .search-input { width: 100%; border: 0; outline: 0; background: none; font: inherit; font-size: 1.6rem; color: var(--card-text-color-main); padding: 16px 0; }
+#nexmoe-search-space .search-close { cursor: pointer; font-size: 22px; line-height: 1; color: var(--card-text-color-tertiary); }
+#nexmoe-search-space .search-body { overflow-y: auto; }
+#nexmoe-search-space .search-result a { display: block; padding: 14px 20px; border-bottom: 1px solid var(--card-separator-color); color: var(--card-text-color-main); }
+#nexmoe-search-space .search-result h3 { margin: 0 0 4px; font-size: 1.6rem; }
+#nexmoe-search-space .search-result .content { color: var(--card-text-color-secondary); font-size: 1.4rem; }
+#nexmoe-search-space .keyword { color: var(--accent-color); font-weight: 700; }
+@media (min-width: 768px) { #nexmoe-search-space .search-container { max-height: 60vh; } }
+
+/* ---- 备案信息（法务要求，不占 Stack 版面）---- */
+.site-footer .beian { margin-top: 12px; font-size: 1.3rem; line-height: 1.9; color: var(--card-text-color-tertiary); }
+.site-footer .beian a { color: inherit; }
+.site-footer .beian a:hover { color: var(--accent-color); }

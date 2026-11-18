@@ -19,7 +19,7 @@ if (is_archive()){
 <meta charset="UTF-8">
 <meta name="keywords" content="<%= config.keywords %>">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-<script>try{var t=localStorage.getItem('nexmoe-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script>(function(){var k='StackColorScheme',s=localStorage.getItem(k)||'auto',d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.dataset.scheme=(s==='dark'||(s==='auto'&&d))?'dark':'light';})()</script>
 <%
 // SEO：canonical、描述与结构化数据由主题统一产出，站点身份仍留在各自 _config
 var seoDesc = strip_html(page.description || '')
@@ -72,33 +72,13 @@ if (seoImage) seo.image = seoImage;
 
 <link rel="shortcut icon" href="<%= theme.favicon.href %>" type="<%= theme.favicon.type %>" />
 <%- open_graph({image: seoImage, url: seoUrl, twitter_card: seoImage ? 'summary_large_image' : 'summary', twitter_image: seoImage, twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-<%- css([
-    'lib/fancybox/fancybox.css', 
-    'lib/mdui_043tiny/mdui.css'
-]) %>
+<%- css_auto_version('css/stack') %>
+<%- css_auto_version('css/site') %>
+<%- css_auto_version('lib/fancybox/fancybox') %>
 
-<%- css_auto_version('lib/iconfont/iconfont.css') %>
-<% if (theme.iconlib) { %>
-    <link rel="stylesheet" href="<%= theme.iconlib %>">
-<% } %>
-<%- css_auto_version('css/style') %>
-
-<% if (theme.preset) { %>
-    <%- css_auto_version(`preset/${theme.preset}`) %>
-<% } %>
-
-<% if (theme.customStyles) { %>
-    <% theme.customStyles.forEach(function(custom){ %>
-        <%- css_auto_version('custom.css') %>
-    <% }) %>
-<% } %>
-
-<%- js([
-    { src:'lib/mdui_043tiny/mdui.js' , async: true}, 
-    { src:'lib/fancybox/fancybox.umd.js' , async: true},
-    { src:'lib/lax.min.js' , async: true}
-]) %>
-
+<%- js([{ src: 'lib/fancybox/fancybox.umd.js', async: true }]) %>
+<%- js_auto_version('js/stack') %>
+<%- js_auto_version('js/search') %>
 <%- js_auto_version('js/app') %>
 
 <% if (theme.copyText) { %>

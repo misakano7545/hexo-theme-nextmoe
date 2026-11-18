@@ -1,0 +1,16 @@
+<%
+var total = page.total || 1;
+var current = page.current || 1;
+var shown = [1, total];
+for (var i = current - 1; i <= current + 1; i++) shown.push(i);
+var prev = 0;
+for (var p = 1; p <= total; p++) {
+    if (shown.indexOf(p) === -1) continue;
+    if (p - prev > 1) { %><span class="page-link dots">&mldr;</span><%
+    }
+    if (p === current) { %><span class="page-link current"><%= p %></span><%
+    } else { %><a class="page-link" href="<%- url_for(page.base + (p === 1 ? '' : 'page/' + p + '/')) %>"><%= p %></a><%
+    }
+    prev = p;
+}
+%>

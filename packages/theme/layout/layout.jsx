@@ -1,14 +1,13 @@
 const { Component } = require('inferno');
-const Background = require('./_partial/background');
 
 module.exports = class extends Component {
     render() {
-        const { config, page, theme, partial } = this.props;
+        const { config, page, body, partial } = this.props;
         const language = page.lang || page.language || config.language;
-        const layout = 'nexmoe';
-        const bodyClass = (layout === 'nexmoe' ? 'mdui-drawer-body-left' : '') + (page.layout === 'post' ? ' nexmoe-post-page' : '');
-        const Body = require(`./_layout/${layout}/body`);
-        const SearchBox = require('./_partial/searchbox');
+        const mainHtml = body + partial('_partial/site-footer');
+        // Stack 把正文卡片样式挂在 .article-page 上，归档页则隐藏右侧栏
+        const isPost = page.layout === 'post' || page.__post === true;
+        const showWidgets = page.archive !== true;
         return (
             <html lang={language ? language.substr(0, 2) : ''}>
                 <head
@@ -16,13 +15,27 @@ module.exports = class extends Component {
                         __html: partial('_partial/head')
                     }}
                 ></head>
-                <body class={layout + ' ' + bodyClass}>
-                    <Background {...this.props} />
-                    <Body {...this.props} />
-                    <SearchBox {...this.props} />
+                <body class={isPost ? 'article-page' : ''}>
+                    <div class="container main-container flex on-phone--column extended">
+                        <aside
+                            class="sidebar left-sidebar sticky"
+                            dangerouslySetInnerHTML={{
+                                __html: partial('_layout/stack/sidebar')
+                            }}
+                        ></aside>
+                        {showWidgets ? (
+                            <aside
+                                class="sidebar right-sidebar sticky"
+                                dangerouslySetInnerHTML={{
+                                    __html: partial('_layout/stack/widgets')
+                                }}
+                            ></aside>
+                        ) : null}
+                        <main class="main full-width" dangerouslySetInnerHTML={{ __html: mainHtml }}></main>
+                    </div>
                     <div
                         dangerouslySetInnerHTML={{
-                            __html: theme.slotFooter
+                            __html: partial('_partial/searchbox')
                         }}
                     ></div>
                 </body>

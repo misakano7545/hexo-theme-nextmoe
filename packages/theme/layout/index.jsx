@@ -1,4 +1,3 @@
-const Paginator = require('./_partial/paginator');
 const { Component, Fragment } = require('inferno');
 
 module.exports = class extends Component {
@@ -7,10 +6,14 @@ module.exports = class extends Component {
         return (
             <Fragment>
                 <section
-                    class="nexmoe-posts"
+                    class="article-list"
                     dangerouslySetInnerHTML={{ __html: partial('_index/list') }}
                 ></section>
-                {page.total > 1 ? <Paginator {...this.props} /> : ''}
+                {
+                    page.total > 1
+                        ? <nav class="pagination" dangerouslySetInnerHTML={{ __html: partial('_index/pagination') }}></nav>
+                        : ''
+                }
             </Fragment>
         );
     }
