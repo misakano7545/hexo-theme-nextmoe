@@ -53,11 +53,15 @@
             -ms-flex: 1;
             flex: 1;
             text-align: center;
-            color: #a3a8ae;
+            color: var(--color-text-3);
+            font-size: 12px;
 
             span {
-                color: var(--color-text-2);
+                color: var(--color-text-1);
                 display: block;
+                font-size: 16px;
+                font-weight: 600;
+                margin-bottom: 2px;
             }
         }
     }
@@ -67,26 +71,31 @@
 
         .nexmoe-list-item {
             padding: 0 36px;
-            color: #9ca2a8;
-            border-radius: var(--radius);
-            margin-bottom: 10px;
+            height: 46px;
+            color: var(--color-text-3);
+            border-radius: 10px;
+            margin-bottom: 8px;
             text-align: center;
+            font-size: 15px;
             transition: none !important;
         }
 
         .nexmoe-list-item.true, .nexmoe-list-item.true i {
-            color: #fff;
+            color: var(--color-text-1);
         }
 
         .nexmoe-list-item.true {
-            opacity: 0.9;
-            background: var(--color-primary);
-            box-shadow: 0 2px 12px var(--color-primary);
+            background: var(--color-primary-bg);
+            box-shadow: none;
         }
 
         .nexmoe-list-item i {
-            font-size: 22px;
-            color: #9ca2a8;
+            font-size: 21px;
+            color: var(--color-text-3);
+        }
+
+        .nexmoe-list-item.true i {
+            color: var(--color-link);
         }
 
         .nexmoe-list-item .mdui-list-item-content {

@@ -4,20 +4,26 @@ $gutter = 24px;
 theme-light()
     color-scheme: light
     --color-card: #fff
+    --color-surface: #fff
     --color-text-1: #111
-    --color-text-2: #444
-    --color-text-3: #363636
-    --color-subtle: #f8f8f8
-    --color-border: #eee
+    --color-text-2: #4a4a4a
+    --color-text-3: #707070
+    --color-link: #d92f4c
+    --color-subtle: #f6f6f8
+    --color-border: #ebebee
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04)
 
 theme-dark()
     color-scheme: dark
     --color-card: #2b2b2b
+    --color-surface: #333
     --color-text-1: #fff
-    --color-text-2: #d8d8d8
-    --color-text-3: #ddd
+    --color-text-2: #d0d0d0
+    --color-text-3: #a3a3a3
+    --color-link: #ff8095
     --color-subtle: rgba(255, 255, 255, 0.06)
     --color-border: rgba(255, 255, 255, 0.14)
+    --shadow-card: none
 
 :root {
     --gutter: 24px;
@@ -61,6 +67,7 @@ body {
     /* 透明，让固定定位的背景图铺满整页，玻璃面板才有东西可折射。 */
     background: transparent;
     font-size: 17px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
 html {
@@ -302,6 +309,11 @@ photos img {
         background-color: var(--color7-bg);
         color: var(--color7);
     }
+}
+
+/* 品牌色当文字色只有 1.5–2.7:1，色相只留在 15% 淡染底色上，文字回到正文色。 */
+.nexmoe-rainbow a {
+    color: var(--color-text-1) !important;
 }
 
 .nexmoe-rainbow-fill {

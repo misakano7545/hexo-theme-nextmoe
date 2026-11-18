@@ -1,18 +1,21 @@
 article {
 	color: var(--color-text-2);
-	font-family: microsoft yahei;
+	font-family: inherit;
+	font-size: 17px;
+	line-height: 1.8;
 }
 
 article p {
-	line-height: 24px;
+	line-height: 1.8;
 }
 
 article code {
-	background-color: rgba(27, 31, 35, 0.05);
-	border-radius: 6px;
-	font-size: 85%;
-	padding: 0.2em 0.4em;
-	font-family: Consolas;
+	background-color: var(--color-subtle);
+	border: 1px solid var(--color-border);
+	border-radius: 5px;
+	font-size: 0.88em;
+	padding: 0.15em 0.4em;
+	font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
 article code::-webkit-scrollbar {
@@ -26,13 +29,13 @@ article code::-webkit-scrollbar-thumb {
 }
 
 .highlight {
-	padding: 12px 14px;
+	padding: 14px 16px;
 	background: #282c34;
 	color: #abb2bf;
 	margin: 25px 0;
 	border-radius: var(--radius);
 	overflow: auto;
-	line-height: 1.2;
+	line-height: 1.55;
 }
 
 .highlight .gutter {
@@ -51,6 +54,8 @@ article pre {
 article pre code {
 	font-size: 100%;
 	padding: 0!important;
+	border: 0;
+	background: none;
 }
 
 article pre code:after {
@@ -71,17 +76,20 @@ article pre code:after {
 article a {
 	-webkit-transition: color 0.35s ease-out;
 	transition: color 0.35s ease-out;
-	color: var(--color-primary);
+	color: var(--color-link);
 	text-decoration: none;
 	word-wrap: break-word;
 }
 
-article a:hover, article a:focus {
-	color: var(--color-primary);
+article p a, article li a, article blockquote a, article td a {
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	text-decoration-thickness: 1px;
 }
 
-article a:hover {
-	text-decoration: underline;
+article a:hover, article a:focus {
+	color: var(--color-link);
+	text-decoration-thickness: 2px;
 }
 
 article p {
@@ -151,12 +159,22 @@ article > table.nexmoe-album img {
 
 article img {
 	display: block;
-	border-radius: var(--radius);
+	margin: 1.2em auto;
+	border-radius: 10px;
+}
+
+article p > img:only-child {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 article h1, article h2, article h3, article h4, article h5, article h6 {
 	color: var(--color-text-1);
-	margin: $gutter 0;
+	margin: 1.6em 0 0.8em;
+}
+
+article h1, article h2, article h3 {
+	font-weight: 600;
+	line-height: 1.4;
 }
 
 article h4, article h5, article h6 {
@@ -188,9 +206,10 @@ article h1 {
 }
 
 article h2 {
-	font-size: 1.7em;
+	font-size: 1.6em;
 	position: relative;
 	padding-bottom: 10px;
+	margin-top: 2em;
 }
 
 article h2:before {
@@ -239,31 +258,17 @@ article h6 {
 article blockquote {
 	color: var(--color-text-2);
 	margin: $gutter 0;
-	padding: 0.1em 2.2em;
+	padding: 0.35em 1.4em;
 	background-color: var(--color-subtle);
-	line-height: 28px;
+	line-height: 1.8;
 	position: relative;
-	border-radius: 10px;
 	border: 1px solid var(--color-border);
-	font-family: sf pro sc, sf pro display, sf pro icons, aos icons, pingfang sc, helvetica neue, helvetica, arial, sans-serif;
+	border-left: 3px solid var(--color-primary);
+	border-radius: 0 10px 10px 0;
 }
 
-article blockquote:before {
-	content: '\201C';
-	top: 15px;
-	left: 10px;
-	position: absolute;
-	color: #888;
-	font-size: 3em;
-}
-
-article blockquote:after {
-	content: '\201D';
-	bottom: -8px;
-	right: 10px;
-	position: absolute;
-	color: #888;
-	font-size: 3em;
+article blockquote p {
+	margin: 0.5em 0;
 }
 
 article hr {
@@ -316,7 +321,7 @@ article ol {
 article ol > li {
 	position: relative;
 	padding: 0.4rem 0;
-	line-height: 24px;
+	line-height: 1.8;
 }
 
 article ol > li::before {
@@ -335,7 +340,7 @@ article ol > li::before {
 }
 
 article li {
-	line-height: 2rem;
+	line-height: 1.8;
 }
 
 article li p {
