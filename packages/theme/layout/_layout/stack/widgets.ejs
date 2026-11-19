@@ -11,7 +11,20 @@ var SEARCH = '<svg class="icon icon-tabler icon-tabler-search" width="24" height
 var years = {};
 site.posts.each(function (post) { var y = post.date.year(); years[y] = (years[y] || 0) + 1; });
 var yearList = Object.keys(years).sort(function (a, b) { return b - a; });
+
+// Stack 文章页的右栏只有页级 widget（默认是目录），首页才用搜索/归档/标签
+var isPost = page.layout === 'post';
+var tocHtml = isPost ? toc(page.content, { list_number: false }) : '';
 %>
+<% if (isPost) { %>
+<% if (tocHtml && tocHtml.length > 20) { %>
+<section class="widget archives">
+    <div class="widget-icon"><%- HASH %></div>
+    <h2 class="widget-title section-title">目录</h2>
+    <div class="widget--toc"><nav id="TableOfContents"><%- tocHtml %></nav></div>
+</section>
+<% } %>
+<% } else { %>
 <% if (hasSearch) { %>
 <form class="search-form widget" onsubmit="return false;">
     <p>
@@ -53,4 +66,5 @@ var yearList = Object.keys(years).sort(function (a, b) { return b - a; });
         <% }); %>
     </div>
 </section>
+<% } %>
 <% } %>

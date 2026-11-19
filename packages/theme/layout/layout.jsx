@@ -5,9 +5,10 @@ module.exports = class extends Component {
         const { config, page, body, partial } = this.props;
         const language = page.lang || page.language || config.language;
         const mainHtml = body + partial('_partial/site-footer');
-        // Stack 把正文卡片样式挂在 .article-page 上，归档页则隐藏右侧栏
+        // Stack 把正文卡片样式挂在 .article-page 上；归档页用 template-archives 且不渲染右栏
         const isPost = page.layout === 'post' || page.__post === true;
         const showWidgets = page.archive !== true;
+        const bodyClass = isPost ? 'article-page' : (page.archive === true ? 'template-archives' : '');
         return (
             <html lang={language ? language.substr(0, 2) : ''}>
                 <head
@@ -15,7 +16,7 @@ module.exports = class extends Component {
                         __html: partial('_partial/head')
                     }}
                 ></head>
-                <body class={isPost ? 'article-page' : ''}>
+                <body class={bodyClass}>
                     <div class="container main-container flex on-phone--column extended">
                         <aside
                             class="sidebar left-sidebar sticky"

@@ -63,6 +63,16 @@ html[data-scheme=dark] .article-content .highlight .link { color: #66d9ef; }
 .article-content .highlight .emphasis { font-style: italic; }
 .article-content .highlight .strong { font-weight: 700; }
 
+/* ---- 标题锚点：Hexo 产出 a.headerlink，Stack 只给 a.header-anchor 定了样式，这里补齐同一套 ---- */
+.article-content a.headerlink { transition: opacity .3s ease; opacity: 0; position: absolute; left: 0; width: var(--card-padding); text-align: center; color: var(--accent-color); }
+.article-content a.headerlink::before { content: "#"; }
+.article-content h1:hover a.headerlink, .article-content h1:focus a.headerlink,
+.article-content h2:hover a.headerlink, .article-content h2:focus a.headerlink,
+.article-content h3:hover a.headerlink, .article-content h3:focus a.headerlink,
+.article-content h4:hover a.headerlink, .article-content h4:focus a.headerlink,
+.article-content h5:hover a.headerlink, .article-content h5:focus a.headerlink,
+.article-content h6:hover a.headerlink, .article-content h6:focus a.headerlink { opacity: 1; }
+
 /* ---- 搜索浮层（沿用主题原有 search.js：读 content.json）---- */
 #nexmoe-search-space { display: none; position: fixed; inset: 0; z-index: 99; background: rgba(0, 0, 0, .45); align-items: flex-start; justify-content: center; padding: 10vh 16px 0; }
 #nexmoe-search-space .search-container { width: 100%; max-width: 620px; max-height: 70vh; display: flex; flex-direction: column; background: var(--card-background); border-radius: var(--card-border-radius); box-shadow: 0 12px 40px rgba(0, 0, 0, .2); overflow: hidden; }
