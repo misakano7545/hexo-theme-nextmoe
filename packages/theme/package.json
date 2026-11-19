@@ -12,8 +12,8 @@
 	"license": "Apache-2.0",
 	"main": "index.js",
 	"scripts": {
-		"lint": "eslint --ext .jsx --ext .json .",
-		"lint:fix": "eslint --ext .jsx --ext .json . --fix"
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix"
 	},
 	"repository": {
 		"type": "git",
@@ -24,10 +24,10 @@
 	},
 	"homepage": "https://github.com/misakano7545/hexo-theme-nextmoe#readme",
 	"devDependencies": {
-		"eslint": "^8.6.0",
-		"eslint-config-hexo": "^5.0.0",
-		"eslint-plugin-json": "^3.0.0",
-		"eslint-plugin-react": "^7.17.0"
+		"eslint": "^9.39.5",
+		"eslint-config-hexo": "^6.0.0",
+		"eslint-plugin-json": "^5.0.0",
+		"eslint-plugin-react": "^7.37.5"
 	},
 	"peerDependencies": {
 		"hexo": "^7.1.1 || ^8.0.0"

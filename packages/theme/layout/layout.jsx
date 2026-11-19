@@ -8,7 +8,13 @@ module.exports = class extends Component {
         // Stack 把正文卡片样式挂在 .article-page 上；归档页用 template-archives 且不渲染右栏
         const isPost = page.layout === 'post' || page.__post === true;
         const showWidgets = page.archive !== true;
-        const bodyClass = isPost ? 'article-page' : (page.archive === true ? 'template-archives' : '');
+        // 嵌套三元被 lint 禁止，用 if/else 表达同样的 body class
+        let bodyClass = '';
+        if (isPost) {
+            bodyClass = 'article-page';
+        } else if (!showWidgets) {
+            bodyClass = 'template-archives';
+        }
         return (
             <html lang={language ? language.substr(0, 2) : ''}>
                 <head
