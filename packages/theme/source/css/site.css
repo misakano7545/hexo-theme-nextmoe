@@ -88,7 +88,8 @@ html[data-scheme=dark] .article-content .highlight .link { color: #66d9ef; }
 @media (min-width: 768px) { #nexmoe-search-space .search-container { max-height: 60vh; } }
 
 /* ---- 置顶标记：sticky: true 的卡片 ---- */
-.article-pinned { padding: 2px 8px; border-radius: var(--tag-border-radius); background: var(--accent-color); color: var(--accent-color-text); font-size: 1.3rem; line-height: 1.7; }
+.article-pinned { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: var(--tag-border-radius); background: var(--accent-color); color: var(--accent-color-text); font-size: 1.3rem; line-height: 1.7; }
+.article-pinned svg { width: 14px; height: 14px; stroke-width: 2.5; }
 
 /* ---- 备案信息（法务要求，不占 Stack 版面）---- */
 .site-footer .beian { margin-top: 12px; font-size: 1.3rem; line-height: 1.9; color: var(--card-text-color-tertiary); }
