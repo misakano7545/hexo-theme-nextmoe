@@ -2,7 +2,14 @@
 var CALENDAR = '<svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>';
 var CLOCK = '<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>';
 %>
-<% page.posts.each(function (post) {
+<% 
+// 置顶：sticky: true 的文章排最前，其余按日期倒序；页数不变，只换顺序
+var perPage = (config.index_generator && config.index_generator.per_page) || 10;
+var all = site.posts.sort('date', -1).toArray();
+var ordered = all.filter(function (p) { return p.sticky; })
+    .concat(all.filter(function (p) { return !p.sticky; }));
+var start = ((page.current || 1) - 1) * perPage;
+ordered.slice(start, start + perPage).forEach(function (post) {
     var cover = post.cover || (post.photos && post.photos[0]);
     // 无 cover 时退回正文首图，卡片才有 Stack 的封面带；正文无图则保持纯文字卡片
     if (!cover) { var im = /<img[^>]+src="([^"]+)"/.exec(post.content || ''); if (im) cover = im[1]; }
@@ -19,8 +26,8 @@ var CLOCK = '<svg class="icon icon-tabler icon-tabler-clock" width="24" height="
         </div>
         <% } %>
         <div class="article-details">
-            <% if (cats) { %>
-            <header class="article-category"><% cats.forEach(function (c) { %><a href="<%- url_for(c.path) %>"><%= c.name %></a><% }); %></header>
+            <% if (cats || post.sticky) { %>
+            <header class="article-category"><% if (post.sticky) { %><span class="article-pinned">置顶</span><% } %><% if (cats) { cats.forEach(function (c) { %><a href="<%- url_for(c.path) %>"><%= c.name %></a><% }); } %></header>
             <% } %>
             <div class="article-title-wrapper">
                 <h2 class="article-title"><a href="<%- url_for(post.path) %>"><%= post.title %></a></h2>
