@@ -31,4 +31,20 @@
             menuBtn.classList.toggle('is-active');
         });
     }
+
+    // 代码块复制按钮，照上游 main.ts 的行为；Hexo 出的是 figure.highlight
+    document.querySelectorAll('.article-content .highlight').forEach(function (block) {
+        var pre = block.querySelector('td.code pre') || block.querySelector('pre');
+        if (!pre || !navigator.clipboard) return;
+        var btn = document.createElement('button');
+        btn.className = 'copyCodeButton';
+        btn.textContent = 'Copy';
+        block.appendChild(btn);
+        btn.addEventListener('click', function () {
+            navigator.clipboard.writeText(pre.textContent).then(function () {
+                btn.textContent = 'Copied!';
+                setTimeout(function () { btn.textContent = 'Copy'; }, 1000);
+            });
+        });
+    });
 })();
